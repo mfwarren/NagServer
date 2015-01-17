@@ -111,7 +111,7 @@ class Nag(db.Model):
 
     @property
     def days_until_next(self):
-        days_since = (self.most_recent_entry.time - datetime.datetime.now()).days
+        days_since = (datetime.datetime.now() - self.most_recent_entry.time).days
         return self.frequency - days_since
 
     @property
