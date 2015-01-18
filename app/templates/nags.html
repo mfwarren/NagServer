@@ -28,7 +28,7 @@
         <td>{{nag.frequency}}</td>
         <td>{{nag.most_recent_entry.time}}</td>
         <td>{{nag.days_until_next}}</td>
-        <td>{{ wtf.quick_form(nag.quickcheck_form, action=url_for('main.quick_checkin', id=nag.id)) }}</td>
+        <td>{{ wtf.quick_form(nag.quickcheck_form, action=url_for('main.quick_checkin', id=nag.id), button_map={'submit': 'success btn-xs'}) }}</td>
       </tr>
       {% endfor %}
     </tbody>

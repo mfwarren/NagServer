@@ -4,6 +4,11 @@
 
 {% block page_content %}
 <div class="page-header">
-  <h1>Hello, {% if current_user.is_authenticated() %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+  <h1>Halotis Nag Service</h1>
+</div>
+
+<div class="row">
+  <img src="{{ url_for('static', filename='big-logo.png') }}">
+  <p>We're watching you</p>
 </div>
 {% endblock %}
