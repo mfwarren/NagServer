@@ -115,6 +115,10 @@ class Nag(db.Model):
         return self.frequency - days_since
 
     @property
+    def entries_descending(self):
+        return self.entries.order_by(desc('time'))
+
+    @property
     def quickcheck_form(self):
         from .main.forms import QuickCheckinForm
         form = QuickCheckinForm()

@@ -61,7 +61,7 @@ def quick_checkin(id):
         abort(404)
     form = QuickCheckinForm()
     if form.validate_on_submit():
-        entry = NagEntry(nag_id=nag.id)
+        entry = NagEntry(nag_id=nag.id, note=form.note.data)
         db.session.add(entry)
         return redirect(url_for('main.nags'))
 

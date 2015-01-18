@@ -18,4 +18,5 @@ class NagForm(Form):
 
 
 class QuickCheckinForm(Form):
+    note = StringField('Note')
     submit = SubmitField('Quick Checkin')
