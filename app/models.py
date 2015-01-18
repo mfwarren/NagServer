@@ -120,7 +120,7 @@ class Nag(db.Model):
 
     @property
     def quickcheck_form(self):
-        from .main.forms import QuickCheckinForm
+        from .nag.forms import QuickCheckinForm
         form = QuickCheckinForm()
         return form
 

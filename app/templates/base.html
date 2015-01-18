@@ -26,7 +26,7 @@
         <div class="navbar-collapse collapse">
             {% if current_user.is_authenticated() %}
             <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('main.nags') }}">Nags</a></li>
+                <li><a href="{{ url_for('nag.nags') }}">Nags</a></li>
             </ul>
             {% endif %}
             <ul class="nav navbar-nav navbar-right">
