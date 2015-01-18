@@ -31,6 +31,13 @@ manager.add_command('migrate', MigrateCommand)
 
 
 @manager.command
+def send_nags():
+    nags = Nag.query.all()
+    for nag in nags:
+        nag.check_and_send_nag()
+
+
+@manager.command
 def test():
     import unittest
     tests = unittest.TestLoader().discover('tests')

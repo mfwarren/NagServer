@@ -1,0 +1,6 @@
+Dear {{ user.username }},
+
+{{nag.message_to_send}}
+
+Sincerely,
+The Halotis Team

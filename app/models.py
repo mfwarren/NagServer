@@ -6,6 +6,7 @@ from flask import current_app
 from flask.ext.login import UserMixin
 from . import db, login_manager
 from sqlalchemy import desc
+from .email import send_email
 
 
 class Role(db.Model):
@@ -106,6 +107,10 @@ class Nag(db.Model):
     entries = db.relationship('NagEntry', backref='nags', lazy='dynamic')
 
     @property
+    def user(self):
+        return User.query.get(self.user_id)
+
+    @property
     def most_recent_entry(self):
         return self.entries.order_by(desc('time')).first()
 
@@ -123,6 +128,18 @@ class Nag(db.Model):
         from .nag.forms import QuickCheckinForm
         form = QuickCheckinForm()
         return form
+
+    @property
+    def overdue(self):
+        return self.days_until_next <= 0
+
+    def send_nag(self):
+        user = self.user
+        send_email(user.email, '[Nag] %s' % self.name, 'nag/email/nag', nag=self, user=user)
+
+    def check_and_send_nag(self):
+        if self.overdue or current_app.config['TESTING']:
+            self.send_nag()
 
     def __repr__(self):
         return '<Nag %s>' % self.name
