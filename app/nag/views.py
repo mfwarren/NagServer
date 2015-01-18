@@ -5,11 +5,12 @@ from .. import db
 from .forms import NagForm, QuickCheckinForm
 from ..models import Nag, NagEntry
 
+
 @nag.route('/nags', methods=['GET', 'POST'])
 @login_required
 def nags():
     nags = current_user.nags
-    return render_template('nags.html', nags=nags)
+    return render_template('nag/index.html', nags=nags)
 
 
 @nag.route('/nags/new', methods=['GET', 'POST'])
@@ -26,7 +27,7 @@ def nag_new():
             db.session.commit()
             flash('A new Nag email has been started.')
             return redirect(url_for('.nags'))
-    return render_template('nag_new.html', form=form)
+    return render_template('nag/new.html', form=form)
 
 
 @nag.route('/nags/<int:id>/', methods=['GET', 'POST'])
@@ -45,7 +46,7 @@ def nag_edit(id):
     form.name.data = nag.name
     form.frequency.data = nag.frequency
     form.message_to_send.data = nag.message_to_send
-    return render_template('nag_edit.html', nag=nag, form=form)
+    return render_template('nag/edit.html', nag=nag, form=form)
 
 
 @nag.route('/nags/<int:id>/checkin/', methods=['POST'])
