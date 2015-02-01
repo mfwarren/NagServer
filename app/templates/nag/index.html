@@ -27,7 +27,13 @@
         <td><a href="{{ url_for('nag.nag_edit', id=nag.id) }}">{{nag.name}}</a></td>
         <td>{{nag.frequency}}</td>
         <td>{{nag.most_recent_entry.time}}</td>
-        <td>{{nag.days_until_next}}</td>
+        {% if nag.days_until_next < 0 %}
+          <td><span class="label label-warning">Overdue</span> (by {{0-nag.days_until_next}} Days)</td>
+        {% elif nag.days_until_next == 0 %}
+          <td><span class="label label-warning">Do Today</span></td>
+        {% else %}
+          <td>{{nag.days_until_next}} Days</td>
+        {% endif %}
         <td>{{ wtf.quick_form(nag.quickcheck_form, form_type="inline", action=url_for('nag.quick_checkin', id=nag.id), button_map={'submit': 'success btn-xs'}) }}</td>
       </tr>
       {% endfor %}
