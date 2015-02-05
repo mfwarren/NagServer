@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Halotis Nag Tool{% endblock %}
+{% block title %}Persistence{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
-  <h1>Your Nags:</h1>
+  <h1>Your Tasks:</h1>
   <div>
-    <a href="{{ url_for('nag.nag_new') }}" class="btn btn-primary">New Nag</a>
+    <a href="{{ url_for('nag.nag_new') }}" class="btn btn-primary">New Task</a>
   </div>
 </div>
 <div>

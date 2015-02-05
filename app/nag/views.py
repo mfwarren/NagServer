@@ -9,8 +9,7 @@ from ..models import Nag, NagEntry
 @nag.route('/nags', methods=['GET', 'POST'])
 @login_required
 def nags():
-    nags = current_user.nags
-    return render_template('nag/index.html', nags=nags)
+    return render_template('nag/index.html', nags=current_user.nags)
 
 
 @nag.route('/nags/new', methods=['GET', 'POST'])

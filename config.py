@@ -3,6 +3,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
+    def __init__(self):
+        pass
+
     SECRET_KEY = 'voapieh3pfx9qnenprq8hwenfx89awnoerf89gqxnao8w7e4gxqon3847wfyxqp'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -10,12 +13,12 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.getenv('MAIL_USERNAME')
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
-    MAIL_SUBJECT_PREFIX = '[Nag]'
+    MAIL_SUBJECT_PREFIX = '[Persistence]'
     MAIL_SENDER = 'Matt Warren <matt.warren@gmail.com>'
     DEFAULT_FROM_EMAIL = 'matt.warren@gmail.com'
 
     @staticmethod
-    def init_app(self):
+    def init_app(klass):
         pass
 
 
